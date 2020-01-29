@@ -1,0 +1,41 @@
+{
+    "users": { 
+        "USERID1": {
+            "name": "Julio",
+            "email": "jmoisesrafael@gmail.com",
+            "online": true
+        },
+        "USERID2": {
+            "name": "Olivia",
+            "email": "olivia@gmail.com",
+            "online": true
+        }
+    },
+    "chats": {
+        "USERID1": {
+            "USERID2" : {
+                "MESSAGEID1": {
+                    "text": "Hi, Como esta?",
+                    "from": "them"
+                },
+                "MESSAGEID2": {
+                    "text": "Bem gracas a Deus e voce?",
+                    "from": "me"
+                }
+            }
+        },
+        "USERID2": {
+            "USERID1" : {
+                "MESSAGEID1": {
+                    "text": "Hi, Como esta?",
+                    "from": "me"
+                },
+                "MESSAGEID2": {
+                    "text": "Bem gracas a Deus e voce?",
+                    "from": "tem"
+                }
+            }
+        }
+    }
+
+}

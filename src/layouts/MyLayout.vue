@@ -15,12 +15,24 @@
         </q-toolbar-title>
 
         <q-btn
+          v-if="!userDetails.userId"
           to="/auth"
           class="absolute-right q-pr-sm"
           icon="account_circle"
           flat
           dense
-          label="Login" /> 
+          label="Login" />
+          
+          <q-btn
+          v-else
+          @click="logoutUser"
+          class="absolute-right q-pr-sm"
+          icon="account_circle"
+          flat
+          dense>
+          Sair <br>
+          {{ userDetails.name}}
+          </q-btn> 
 
       </q-toolbar>
     </q-header>
@@ -32,9 +44,10 @@
 </template>
 
 <script>
-import { openURL } from 'quasar'
+import { mapState, mapActions } from 'vuex'
 export default {
   computed: {
+    ...mapState('store', ['userDetails']),
     title() {
       //definicao de titulos em cada pagina
       let curretPath = this.$route.fullPath
@@ -43,10 +56,14 @@ export default {
       else if (curretPath == '/auth') return 'Login'
     }
   },
-  data () {
-    return {
-      leftDrawerOpen: false
-    }
+  methods: {
+    ...mapActions('store', ['logoutUser'])
   }
 }
 </script>
+
+<style lang="stylus">
+  .q-toolbar
+    .q-btn
+      line-height : 1.2
+</style>

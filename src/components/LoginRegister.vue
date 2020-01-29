@@ -33,6 +33,7 @@
 </template>
 
 <script>
+    import { mapActions } from 'vuex'
     export default {
         props: ['tab'],
         data() {
@@ -45,12 +46,14 @@
             }            
         },
         methods:{
+            ...mapActions('store', ['registerUser', 'loginUser']), //Mapeamento das actions, que estao em store. O array eh usado para inserir as actions que queremos
+
             submitForm() {
                 if(this.tab == 'login') {
-                    console.log('Login do utilizador')
+                    this.loginUser(this.formData)
                 }
-                else  {
-                    console.log('Registo do utilizador')
+                else  { //trigger a action que regista utilizadores. Para tal eh preciso mapear a actiom, acima
+                    this.registerUser(this.formData); // No store eh representado pelo payload
                 }
             }
         }
