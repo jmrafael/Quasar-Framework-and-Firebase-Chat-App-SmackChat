@@ -45,14 +45,18 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import mixinOtherUserDetails from 'src/includes/mixin-other-user-details.js'
+
 export default {
+  mixins: [mixinOtherUserDetails],
+
   computed: {
     ...mapState('store', ['userDetails']),
     title() {
       //definicao de titulos em cada pagina
       let curretPath = this.$route.fullPath
       if(curretPath == '/') return "SmackChat"
-      else if (curretPath == '/chat') return 'Chat'
+      else if (curretPath.includes('/chat')) return this.otherUserDetails.name
       else if (curretPath == '/auth') return 'Login'
     }
   },
