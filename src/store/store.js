@@ -145,8 +145,11 @@ const actions = {
         }
         
     },
-    firebaseSendMessage({}, payload) {
-        console.log('payload', payload)
+    firebaseSendMessage({}, payload) { // Metodo que permite enviar mensagem chat
+        firebaseDb.ref('chats/' + state.userDetails.userId + '/' + payload.otherUserId).push(payload.message)
+
+        payload.message.from = 'them'
+        firebaseDb.ref('chats/' + payload.otherUserId + '/' + state.userDetails.userId).push(payload.message)
     }
 }
 
